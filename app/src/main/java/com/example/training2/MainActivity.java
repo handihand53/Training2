@@ -9,9 +9,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity {
     private Button btnLogin;
+    private Button fragment;
     private TextView signUp;
     private EditText email;
     private EditText password;
@@ -40,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, SignupActivity.class));
             }
         });
+
+
     }
 
     protected void validateEmail(String email){
@@ -59,7 +64,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    protected void validatePassword(String password){
-
-    }
 }

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class HomeActivity extends AppCompatActivity {
     private Button aboutButton;
     private Button exitButton;
+    private Button fragmentBtn;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +24,16 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(new Intent(HomeActivity.this, AboutActivity.class));
             }
         });
+
+        fragmentBtn = findViewById(R.id.fragment);
+        fragmentBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                finish();
+                startActivity(new Intent(HomeActivity.this, profileActivity.class));
+            }
+        });
+
 
         exitButton = findViewById(R.id.exitButton);
         exitButton.setOnClickListener(new View.OnClickListener(){
