@@ -11,6 +11,7 @@ public class HomeActivity extends AppCompatActivity {
     private Button aboutButton;
     private Button exitButton;
     private Button fragmentBtn;
+    private Button viewPager;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,15 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 finish();
                 System.exit(0);
+            }
+        });
+
+        viewPager = findViewById(R.id.viewPager);
+        viewPager.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                finish();
+                startActivity(new Intent(HomeActivity.this, ViewPage.class));
             }
         });
     }

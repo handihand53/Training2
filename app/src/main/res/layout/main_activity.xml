@@ -58,6 +58,7 @@
             android:id="@+id/signUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="#ffbf00"
             android:text="Sign Up now" />
     </LinearLayout>
 
