@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class MainActivity extends AppCompatActivity {
+    public static String FLAG = "INI_FLAG";
     private Button btnLogin;
     private Button fragment;
     private TextView signUp;
@@ -53,7 +54,11 @@ public class MainActivity extends AppCompatActivity {
             password = findViewById(R.id.password);
             if(!password.getText().toString().equals("")){
                 finish();
-                startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                Intent home = new Intent(MainActivity.this, HomeActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString(FLAG, email);
+                home.putExtras(bundle);
+                startActivity(home);
             }else{
                 Toast.makeText(getApplicationContext(),"Password tidak boleh kosong", Toast.LENGTH_SHORT).show();
             }
