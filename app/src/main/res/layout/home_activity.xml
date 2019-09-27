@@ -96,9 +96,21 @@
             android:layout_height="wrap_content"
             android:onClick="cancelJob"
             android:text="Cancel Job"
+            android:id="@+id/cancel"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/schedule" />
+
+        <Button
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/recycleView"
+            android:text="Recycle View"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cancel" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

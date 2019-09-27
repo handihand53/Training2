@@ -25,6 +25,7 @@ import com.example.training2.service.MyJobService;
 
 public class HomeActivity extends AppCompatActivity {
 
+    private Button recycleView;
     private Button aboutButton;
     private Button exitButton;
     private Button fragmentBtn;
@@ -85,6 +86,15 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 finish();
                 startActivity(new Intent(HomeActivity.this, ViewPage.class));
+            }
+        });
+
+        recycleView = findViewById(R.id.recycleView);
+        recycleView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                startActivity(new Intent(HomeActivity.this, RecyclerViewActivity.class));
             }
         });
     }
