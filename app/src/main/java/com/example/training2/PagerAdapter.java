@@ -42,7 +42,12 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        String title = "ini tab " + (position+1);
-        return title.subSequence(title.lastIndexOf(".") + 1, title.length());
+        if(position==0){
+            String title = "SQL LITE ";
+            return title.subSequence(title.lastIndexOf(".") + 1, title.length());
+        }else {
+            String title = "ini tab " + (position + 1);
+            return title.subSequence(title.lastIndexOf(".") + 1, title.length());
+        }
     }
 }

@@ -30,6 +30,7 @@ public class HomeActivity extends AppCompatActivity {
     private Button exitButton;
     private Button fragmentBtn;
     private Button viewPager;
+    private Button sqlLite;
     private TextView textView;
     private boolean isReceiverReigtered = false;
     private boolean isConnect = false;
