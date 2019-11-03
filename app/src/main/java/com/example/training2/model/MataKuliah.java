@@ -1,14 +1,14 @@
 package com.example.training2.model;
 
 public class MataKuliah {
-
+    private String id;
     private String matkul;
     private String namaDosen;
     private int sks;
 
     public MataKuliah(){ }
 
-    public MataKuliah(String matkul, String namaDosen, int sks) {
+    public MataKuliah( String matkul, String namaDosen, int sks) {
         this.matkul=matkul;
         this.sks=sks;
         this.namaDosen=namaDosen;
@@ -36,5 +36,13 @@ public class MataKuliah {
 
     public void setSks(int sks) {
         this.sks = sks;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

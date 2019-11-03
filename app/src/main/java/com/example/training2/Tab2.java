@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -34,20 +35,18 @@ public class Tab2 extends Fragment {
     private EditText namaDosen;
     private EditText sks;
     private Button buttonSimpan;
-    private Button buttonHapus;
-    FirebaseFirestore firebaseFirestoreDb;
+    private Button refreshButton;
+    FirebaseFirestore firebaseFirestoreDb = FirebaseFirestore.getInstance();
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-
-
+//    private DocumentReference noteRef = firebaseFirestoreDb.document("DaftarMatkul/");
     public Tab2() {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        firebaseFirestoreDb = FirebaseFirestore.getInstance();
     }
 
 
@@ -60,14 +59,16 @@ public class Tab2 extends Fragment {
         sks = view.findViewById(R.id.Sks);
         recyclerView = view.findViewById(R.id.recycle_view_matkul);
         buttonSimpan = view.findViewById(R.id.simpanButton);
-        buttonHapus = view.findViewById(R.id.hapusButton);
-        buttonHapus.setOnClickListener(new View.OnClickListener() {
+        refreshButton = view.findViewById(R.id.refreshButton);
+
+        refreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteDataMahasiswa();
+                getDataMataKuliah();
+                
             }
         });
-
+        getDataMataKuliah();
 
         buttonSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,8 +115,6 @@ public class Tab2 extends Fragment {
         getDataMataKuliah();
     }
 
-
-
     private void getDataMataKuliah() {
         final ArrayList<MataKuliah> dataMatkul = new ArrayList<MataKuliah>();
         System.out.println("========================================================================================");
@@ -129,10 +128,13 @@ public class Tab2 extends Fragment {
 
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         MataKuliah mataKuliah = new MataKuliah();
+                        mataKuliah.setId(document.getId());
                         mataKuliah.setMatkul((String) document.get("matkul").toString());
                         mataKuliah.setNamaDosen((String) document.get("namaDosen").toString());
                         mataKuliah.setSks(((Long) document.get("sks")).intValue());
                         dataMatkul.add(mataKuliah);
+                        System.out.println(document.getMetadata());
+                        System.out.println(document.getId());
                         System.out.println(document.get("matkul"));
                         System.out.println(document.get("namaDosen"));
                         System.out.println(document.get("sks"));
@@ -155,25 +157,5 @@ public class Tab2 extends Fragment {
 
     }
 
-    private void deleteDataMahasiswa() {
-        firebaseFirestoreDb.collection("DaftarMatkul").document()
-            .delete()
-            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    mataKuliah.setText("");
-                    namaDosen.setText("");
-                    sks.setText("");
-                    Toast.makeText(requireActivity(), "Mahasiswa berhasil dihapus",
-                            Toast.LENGTH_SHORT).show();
-                }
-            })
-            .addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(requireActivity(), "Error deleting document: " + e.getMessage(),
-                            Toast.LENGTH_SHORT).show();
-                }
-            });
-    }
+
 }
