@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dip" >
+
+    <TextView
+        android:id="@+id/txt_matkul"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignWithParentIfMissing="true"
+        android:gravity="center_vertical"
+        android:text="Pemograman Android"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+
+
+    <TextView
+        android:id="@+id/txt_nama_dosen"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:textColor="@android:color/black"
+        android:text="Pak Dendy"
+        android:textSize="12sp"
+        android:layout_below="@+id/txt_matkul"/>
+
+    <TextView
+        android:id="@+id/txt_sks"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_nama_dosen"
+        android:layout_alignParentRight="true"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:text="3"
+        android:textColor="@android:color/black"
+        android:textSize="12sp" />
+
+</RelativeLayout>

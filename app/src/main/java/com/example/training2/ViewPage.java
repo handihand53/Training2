@@ -2,11 +2,14 @@ package com.example.training2;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,9 +17,21 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.training2.db.DbHelper;
 import com.example.training2.model.Mahasiswa;
+import com.example.training2.model.MataKuliah;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.okhttp.internal.Internal;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ViewPage extends AppCompatActivity {
 
@@ -27,11 +42,17 @@ public class ViewPage extends AppCompatActivity {
     TextView nama_txt;
     TextView telepon_txt;
     Button add;
+    private Button buttonSimpan;
+
+    private EditText mataKuliah;
+    private EditText namaDosen;
+    private EditText sks;
 
     DbHelper mydb;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+    FirebaseFirestore firebaseFirestoreDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +67,7 @@ public class ViewPage extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        firebaseFirestoreDb = FirebaseFirestore.getInstance();
 
     }
 
@@ -65,10 +87,6 @@ public class ViewPage extends AppCompatActivity {
 
         data = mydb.getAllMahasiswa();
 
-//        for(int i=0;i<data.size();i++){
-//            System.out.println("ini dari viewpage "+ data.get(i).getNama());
-//        }
-
         recyclerView = findViewById(R.id.recycle_view_mahasiswa);
         recyclerView.setHasFixedSize(true);
         recyclerView.setNestedScrollingEnabled(false);
@@ -81,4 +99,6 @@ public class ViewPage extends AppCompatActivity {
 
         System.out.println("clicked");
     }
+
+
 }
